@@ -11,6 +11,7 @@
 #define TFT_DC   3
 #define TFT_RST  2
 // TFT_BL left undefined — backlight tied to 3V3
+#define TFT_BL -1
 #define TOUCH_CS 7
 
 #define LOAD_GLCD
