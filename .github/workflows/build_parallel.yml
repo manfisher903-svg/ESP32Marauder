@@ -277,7 +277,13 @@ jobs:
       #- name: Rename Marauder ${{ matrix.board.name }} bin
       #  run: |
       #    mv ./esp32_marauder/build/esp32.esp32.${{ matrix.board.build_dir }}/esp32_marauder.ino.bin ./esp32_marauder/build/esp32.esp32.${{ matrix.board.build_dir }}/esp32_marauder.${{ matrix.board.file_name }}.bin
-      
+      - name: Upload full C5 bin set
+        if: matrix.board.flag == 'MARAUDER_V8'
+        uses: actions/upload-artifact@v4
+        with:
+          name: c5_ili9341_full
+          path: esp32_marauder/build/esp32.esp32.esp32c5/
+          retention-days: 5
       - name: Rename and Upload ${{ matrix.board.name }} Artifact
         run: |
           VERSION=$(grep '#define MARAUDER_VERSION' ./esp32_marauder/configs.h | sed -E 's/.*"v([^"]+)"/v\1/' | tr '.' '_')
